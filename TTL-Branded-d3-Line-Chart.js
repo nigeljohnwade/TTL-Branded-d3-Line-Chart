@@ -2,6 +2,7 @@ define( [
     "css!./css/TTL-Branded-d3-Line-Chart.css",
     "./libs/d3.min",
     "./libs/charts",
+    "./libs/legend",
     "./properties",
     "qlik"
     ],
@@ -9,6 +10,7 @@ define( [
         cssContent,
         d3,
         charts,
+        legend,
         props,
         qlik
         ) {

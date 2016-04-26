@@ -32,12 +32,12 @@ function drawLineChart(data, target, container){
             return y(d); 
         });
         
-    var city = chart.selectAll(".city")
+    var series = chart.selectAll(".series")
         .data(data)
         .enter().append("g")
-        .attr("class", "city");
+        .attr("class", "series");
 
-    city.append("path")
+    series.append("path")
         .attr("class", "line")
         .attr("d", function(d, i) { 
             return line(d); 

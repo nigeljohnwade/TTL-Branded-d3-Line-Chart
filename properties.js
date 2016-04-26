@@ -1,18 +1,21 @@
 define( [], function () {
     'use strict';
     var dimensions = {
-        uses: "dimensions",
+        uses: "dimensions"
     };
     var measures = {
-        uses: "measures",
+        uses: "measures"
     };
+    var sorting = {
+        uses: "sorting"
+    }
     var chartTitle = {
-        ref: "ttl-table-props.chartTitle",
+        ref: "ttl-linechart-props.chartTitle",
         label: "Chart Title",
         type: "string"
     };
     var captionText = {
-        ref: "ttl-table-props.captionText",
+        ref: "ttl-linechart-props.captionText",
         label: "Caption Text",
         type: "string",
         component: "textarea"
