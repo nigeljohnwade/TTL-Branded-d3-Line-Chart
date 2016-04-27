@@ -36,14 +36,16 @@ define( [
                     this.table = qlik.table( this );
                 }
                 $element.empty();
-                var _data = [];
+                var _data = [],
+                    _labels = [];
                 for (var i = 0 ; i < this.table.rows[0].measures.length ; i++ ){
                     var _tmp = this.table.rows.map(function(elem){
                         return elem.measures[i].qNum;
                     });
                     _data.push(_tmp);
+                    _labels.push(this.table.rows[0].measures[i].qMeasureInfo.qFallbackTitle);
                 }
-                drawLineChart(_data, 'd3-line-chart', $element);
+                drawLineChart(_data, _labels, 'd3-line-chart', $element, layout);
             },
         };
     } );

@@ -20,12 +20,33 @@ define( [], function () {
         type: "string",
         component: "textarea"
     };
+    var displayLegend = {
+        ref: "ttl-linechart-props.displayLegend",
+        label: "Display Legend?",
+        type: "boolean",
+        defaultValue: false
+    }
+    var legendPosition = {
+        ref: "ttl-linechart-props.legendPosition",
+        component: "dropdown",
+        label: "Legend Position",
+        type: "string",
+        options: [{
+                value: "e",
+                label: "East"
+            },{
+                value: "w",
+                label: "West"
+            }],
+    };        
     var customSection = {
         component: "expandable-items",
         label: "Labels",
         items: {
             chartTile: chartTitle,
-            captionText: captionText
+            captionText: captionText,
+            displayLegend: displayLegend,
+            legendPosition: legendPosition
         }
     };
     return {

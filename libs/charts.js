@@ -1,4 +1,4 @@
-function drawLineChart(data, target, container){
+function drawLineChart(data, labels, target, container, layout){
     var colors = [
         '#1f78b4','#33a02c','#e31a1c','#ff7f00','#6a3d9a','#b15928',
         '#62a3d0','#72bf5b','#ef5a5a','#fe9f37','#9a77b8','#d8ac60',
@@ -7,6 +7,11 @@ function drawLineChart(data, target, container){
     var width = container.width(),
         height = container.height();
 
+    if(layout["ttl-linechart-props"].displayLegend){
+        drawLineLegend(data, labels, colors, container, layout);
+        var legendWidth = $('.legend', container).width();
+    }
+    
     var y = d3.scale.linear()
         .range([height, 0]);
     var x = d3.scale.linear()
@@ -15,7 +20,7 @@ function drawLineChart(data, target, container){
     var containerSelection = d3.select(container[0]);
 
     var chart = containerSelection.append("svg")
-        .attr("width", width)
+        .attr("width", width - legendWidth)
         .attr("height", height)
         .html("")
         .attr("class", target);
@@ -47,4 +52,8 @@ function drawLineChart(data, target, container){
             return colors[i];
         })
         .attr("fill", "none");
+        
+    if(layout["ttl-linechart-props"].displayLegend && layout["ttl-linechart-props"].legendPosition === 'w'){
+        chart.style("transform", "translateX(" + legendWidth + "px)");
+    }        
 }
