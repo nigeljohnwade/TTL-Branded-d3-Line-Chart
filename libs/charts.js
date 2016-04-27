@@ -21,7 +21,7 @@ define([
             var y = d3.scale.linear()
                 .range([height, 0]);
             var x = d3.scale.linear()
-                .range([0, width]);
+                .range([0, width - legendWidth]);
                 
             var containerSelection = d3.select(container[0]);
 
@@ -31,8 +31,14 @@ define([
                 .html("")
                 .attr("class", target);
                 
-            y.domain([0, d3.max(data[0])]);
-            x.domain([0, data[0].length]);
+            var _dataCollate = {max:[], length:[]};
+            $.each(data, function(idx, elem){
+                _dataCollate.max.push(d3.max(elem));
+                _dataCollate.length.push(elem.length)
+            });
+            
+            y.domain([0, d3.max(_dataCollate.max)]);
+            x.domain([0, d3.max(_dataCollate.length)]);
 
             var line = d3.svg.line()
                 .interpolate("basis")
