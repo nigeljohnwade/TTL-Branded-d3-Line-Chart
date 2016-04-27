@@ -37,10 +37,10 @@ define( [
                 var _data = [],
                     _labels = [];
                 for (var i = 0 ; i < this.table.rows[0].measures.length ; i++ ){
-                    var _tmp = this.table.rows.map(function(elem){
-                        return elem.measures[i].qNum;
-                    });
-                    _data.push(_tmp);
+                    _data.push([]);
+                    for(var j = 0 ; j < this.table.rows.length ; j++ ){
+                        _data[i].push({name: this.table.rows[j].dimensions[0].qText, value: this.table.rows[j].measures[i].qNum});
+                    }
                     _labels.push(this.table.rows[0].measures[i].qMeasureInfo.qFallbackTitle);
                 }
                 charts.drawLineChart(_data, _labels, 'd3-line-chart', $element, layout);

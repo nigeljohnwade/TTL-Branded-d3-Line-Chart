@@ -12,7 +12,9 @@ define([
             ]; 
             var width = container.width(),
                 height = container.height(),
-                legendWidth = 0;
+                legendWidth = 0,
+                topPadding = 0,
+                bottomPadding = 0;
 
             if(layout["ttl-linechart-props"].displayLegend){
                 legend.drawLegend(data, labels, colors, container, layout);
@@ -34,7 +36,7 @@ define([
                 
             var _dataCollate = {max:[], length:[]};
             $.each(data, function(idx, elem){
-                _dataCollate.max.push(d3.max(elem));
+                _dataCollate.max.push(d3.max(elem.map(function(elem2){ return elem2.value})));
                 _dataCollate.length.push(elem.length)
             });
             
@@ -58,7 +60,7 @@ define([
             series.append("path")
                 .attr("class", "line")
                 .attr("d", function(d, i) { 
-                    return line(d); 
+                    return line((d.map(function(elem){return elem.value}))); 
                 })
                 .attr("stroke-width", "1px")
                 .attr("stroke", function(d, i){
