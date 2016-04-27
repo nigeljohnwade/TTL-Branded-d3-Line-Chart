@@ -2,7 +2,6 @@ define( [
     "css!./css/TTL-Branded-d3-Line-Chart.css",
     "./libs/d3.min",
     "./libs/charts",
-    "./libs/legend",
     "./properties",
     "qlik"
     ],
@@ -10,7 +9,6 @@ define( [
         cssContent,
         d3,
         charts,
-        legend,
         props,
         qlik
         ) {
@@ -45,7 +43,7 @@ define( [
                     _data.push(_tmp);
                     _labels.push(this.table.rows[0].measures[i].qMeasureInfo.qFallbackTitle);
                 }
-                drawLineChart(_data, _labels, 'd3-line-chart', $element, layout);
+                charts.drawLineChart(_data, _labels, 'd3-line-chart', $element, layout);
             },
         };
     } );
