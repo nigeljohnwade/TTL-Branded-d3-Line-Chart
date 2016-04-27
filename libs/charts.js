@@ -11,11 +11,12 @@ define([
                 '#a6cee3','#b2df8a','#fb9a99','#fdbf6f','#cab2d6','#ffff99'
             ]; 
             var width = container.width(),
-                height = container.height();
+                height = container.height(),
+                legendWidth = 0;
 
             if(layout["ttl-linechart-props"].displayLegend){
                 legend.drawLegend(data, labels, colors, container, layout);
-                var legendWidth = $('.legend', container).width();
+                legendWidth = $('.legend', container).width();
             }
             
             var y = d3.scale.linear()
