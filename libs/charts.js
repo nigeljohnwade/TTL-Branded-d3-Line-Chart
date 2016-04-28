@@ -81,7 +81,7 @@ define([
             var y = d3.scale.linear()
                 .range([plotHeight, 0]);
             y.domain([0, d3.max(_dataCollate.max)]);
-            var y_axis = d3.svg.axis().scale(y).orient("left");
+            var y_axis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format("s"));
             var axis_y = d3.select("svg")
                 .append("g")
                 .attr("class", "y axis")
