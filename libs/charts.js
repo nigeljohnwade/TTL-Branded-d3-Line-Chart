@@ -16,10 +16,10 @@ define([
                 legendWidth = 0,
                 chartTitleHeight = 0,
                 captionTextHeight = 0,
-                topPadding = 0,
+                topPadding = 20,
                 bottomPadding = 0,
                 leftPadding = 0,
-                rightPadding = 0,
+                rightPadding = 20,
                 xAxisHeight = 0,
                 yAxisWidth = 0;
                 
@@ -60,14 +60,14 @@ define([
                         return props.captionText;
                     })
                     .attr("y", function(d, i){
-                        return this.offsetHeight + chartTitleHeight;
+                        return this.offsetHeight + chartTitleHeight + 10;
                     });
                 captionTextHeight = captionText[0][0].offsetHeight;
             }
             
 
             var x = d3.scale.linear()
-                .range([0, width - legendWidth]);
+                .range([0, width - legendWidth - leftPadding - rightPadding]);
             x.domain([0, d3.max(_dataCollate.length)]);
             var x_axis = d3.svg.axis().scale(x);
             var axis_x = d3.select("svg")
@@ -90,7 +90,7 @@ define([
             axis_x.remove();
             
             x = d3.scale.linear()
-                .range([0, width - legendWidth - yAxisWidth]);
+                .range([0, width - legendWidth - yAxisWidth - leftPadding - rightPadding]);
             x.domain([0, d3.max(_dataCollate.length)]);
             x_axis = d3.svg.axis().scale(x);
             axis_x = d3.select("svg")
@@ -98,8 +98,8 @@ define([
                 .attr("class", "x axis")
                 .call(x_axis);
                 
-            axis_x.attr("transform", "translate(" + yAxisWidth + "," + (height - bottomPadding - xAxisHeight) + ")");
-            axis_y.attr("transform", "translate(" + yAxisWidth + ", "  + (chartTitleHeight + captionTextHeight + topPadding) + ")");
+            axis_x.attr("transform", "translate(" + yAxisWidth + leftPadding + "," + (height - bottomPadding - xAxisHeight) + ")");
+            axis_y.attr("transform", "translate(" + yAxisWidth + leftPadding + ", "  + (chartTitleHeight + captionTextHeight + topPadding) + ")");
             
             var plotWidth = width - yAxisWidth - leftPadding - rightPadding;
 

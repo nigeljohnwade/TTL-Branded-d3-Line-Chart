@@ -31,9 +31,12 @@ svg text.caption-text{
 }
 .axis line, .axis path{
     fill: none;
-    stroke: black;
+    stroke: lightgrey;
 }
-.d3-line-chart circle{
+.axis text{
+    fill: grey;
+}
+.d3-line-chart circle.point{
     stroke-width: 1px;
     fill: white;
 }
