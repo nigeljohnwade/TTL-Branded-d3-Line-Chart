@@ -80,6 +80,7 @@ define( [], function () {
         items: {
             dimensions: dimensions,
             measures: measures,
+            sorting: sorting,
             customSection: customSection,
             appearanceSection: appearanceSection
         }

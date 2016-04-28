@@ -136,6 +136,7 @@ define([
                         .data(data[i])
                         .enter()
                         .append("circle")
+                        .classed("point", true)
                         .attr("cx", function(d, idx){
                             return x(idx);
                         })
@@ -150,6 +151,9 @@ define([
                         })
                         .attr("transform", function(){
                             return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
+                        })
+                        .attr("data-value", function(d, idx){
+                            return layout.qHyperCube.qDataPages[0].qMatrix[idx][0].qElemNumber;
                         })
                         .append("title")
                         .text(function(d, idx){
