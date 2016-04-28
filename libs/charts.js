@@ -104,7 +104,6 @@ define([
             var plotWidth = width - yAxisWidth - leftPadding - rightPadding;
 
             var line = d3.svg.line()
-                .interpolate("basis")
                 .x(function(d, i) {
                     return x(i); 
                 })
@@ -129,9 +128,29 @@ define([
                 .attr("fill", "none");
                 
             series.attr("transform", function(){
-                    return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding - bottomPadding) + ")"
+                    return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
                 });               
-            
+            for(var i = 0 ; i < data.length ; i++){
+                var points = chart.selectAll(".points")
+                    .data(data[i])
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d, idx){
+                        return x(idx);
+                    })
+                    .attr("cy", function(d, idx){
+                        return y(d.value);
+                    })
+                    .attr("r", function(d, idx){
+                        return 5;
+                    })
+                    .attr("fill", function(d, idx){
+                        return colors[i];
+                    }).attr("transform", function(){
+                        return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
+                    });
+            }
+                
             if(props.displayLegend && props.legendPosition === 'w'){
                 chart.style("transform", "translateX(" + legendWidth + "px)");
             }        
