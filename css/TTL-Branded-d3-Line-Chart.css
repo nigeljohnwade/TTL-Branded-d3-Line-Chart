@@ -30,3 +30,7 @@ svg text.caption-text{
     fill: none;
     stroke: black;
 }
+.d3-line-chart circle{
+    stroke-width: 1px;
+    fill: white;
+}

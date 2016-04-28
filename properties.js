@@ -40,7 +40,22 @@ define( [], function () {
                 value: "w",
                 label: "West"
             }],
-    };        
+    };       
+    var displayPoints = {
+        ref: "ttl-linechart-props.displayPoints",
+        type: "boolean",
+        label: "Dsiplay Points?",
+        defaultValue: false
+    };
+    var pointRadius = {
+        ref: "ttl-linechart-props.pointRadius",
+        type: "number",
+        label: "Point Radius",
+        component: "slider",
+        defaultValue: 0,
+        min: 0,
+        max: 10
+    }
     var customSection = {
         component: "expandable-items",
         label: "Labels",
@@ -51,13 +66,22 @@ define( [], function () {
             legendPosition: legendPosition
         }
     };
+    var appearanceSection = {
+        component: "expandable-items",
+        label: "Apearance",
+        items:{
+            displayPoints: displayPoints,
+            pointRadius: pointRadius
+        }
+    };
     return {
         type: "items",
         component: "accordion",
         items: {
             dimensions: dimensions,
             measures: measures,
-            customSection: customSection
+            customSection: customSection,
+            appearanceSection: appearanceSection
         }
     };
 })

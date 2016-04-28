@@ -129,26 +129,33 @@ define([
                 
             series.attr("transform", function(){
                     return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
-                });               
-            for(var i = 0 ; i < data.length ; i++){
-                var points = chart.selectAll(".points")
-                    .data(data[i])
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function(d, idx){
-                        return x(idx);
-                    })
-                    .attr("cy", function(d, idx){
-                        return y(d.value);
-                    })
-                    .attr("r", function(d, idx){
-                        return 5;
-                    })
-                    .attr("fill", function(d, idx){
-                        return colors[i];
-                    }).attr("transform", function(){
-                        return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
-                    });
+                });
+            if(props.displayPoints){
+                for(var i = 0 ; i < data.length ; i++){
+                    var points = chart.selectAll(".points")
+                        .data(data[i])
+                        .enter()
+                        .append("circle")
+                        .attr("cx", function(d, idx){
+                            return x(idx);
+                        })
+                        .attr("cy", function(d, idx){
+                            return y(d.value);
+                        })
+                        .attr("r", function(d, idx){
+                            return props.pointRadius;
+                        })
+                        .attr("stroke", function(d, idx){
+                            return colors[i];
+                        })
+                        .attr("transform", function(){
+                            return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
+                        })
+                        .append("title")
+                        .text(function(d, idx){
+                            return [d.name, ": ", d.value, " (", labels[i], ")"].join('');
+                        });
+                }
             }
                 
             if(props.displayLegend && props.legendPosition === 'w'){
