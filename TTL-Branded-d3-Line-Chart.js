@@ -46,10 +46,10 @@ define( [
                 charts.drawLineChart(_data, _labels, 'd3-line-chart', $element, layout);
                 $element.find('circle.point').on('qv-activate', function(e) {
                     if(this.hasAttribute("data-value")) {
-                        var value = parseInt(this.getAttribute("data-value"), 10), dim = 0;
+                        var value = parseInt(this.getAttribute("data-qelemnumber"), 10), dim = 0;
                         self.selectValues(dim, [value], true);
                     }
-        });
+                });
             },
         };
     } );

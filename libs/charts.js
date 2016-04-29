@@ -130,6 +130,7 @@ define([
             series.attr("transform", function(){
                     return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
                 });
+                
             if(props.displayPoints){
                 for(var i = 0 ; i < data.length ; i++){
                     var points = chart.selectAll(".points")
@@ -152,9 +153,18 @@ define([
                         .attr("transform", function(){
                             return "translate(" + yAxisWidth + ", " + (chartTitleHeight + captionTextHeight + topPadding) + ")"
                         })
-                        .attr("data-value", function(d, idx){
+                        .attr("data-qelemnumber", function(d, idx){
                             return layout.qHyperCube.qDataPages[0].qMatrix[idx][0].qElemNumber;
                         })
+                        .attr("data-name", function(d){
+                            return d.name;
+                        })
+                        .attr("data-value", function(d){
+                            return d.value;
+                        })                 
+                        .attr("data-series", function(d){
+                            return labels[i];
+                        })                        
                         .append("title")
                         .text(function(d, idx){
                             return [d.name, ": ", d.value, " (", labels[i], ")"].join('');
